@@ -399,7 +399,7 @@ ws_upgrade(State=#http_state{socket=Socket, transport=Transport, out=head},
 			[<<"permessage-deflate">>]};
 		false -> {Headers, []}
 	end,
-	Key = cow_ws:key(),
+  Key = maps:get(key, WsOpts, cow_ws:key()),
 	Headers2 = [
 		{<<"connection">>, <<"upgrade">>},
 		{<<"upgrade">>, <<"websocket">>},
